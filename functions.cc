@@ -1,5 +1,6 @@
 #include "Grafo.h"
 #include <algorithm>
+using namespace std;
 
 void graph(Grafo &graf){
   
@@ -86,30 +87,34 @@ string mnpFun="";
     if(graf.nodeExists(initialNode)){
       //dfsAdapted;
 
+      //////////////////////////////////////
+      /*
       for(int h=0; h<graf.graphLength();h++){
         visit.push_back(false);
       }
       graf.dfsAdapted(graf.getNodeFromIndex(initialNode),visit,mnpFunInt);//se recorre el grafo restando al MNP hasta que este llegue a 0
-
+      */
+      /////////////////////////
+      graf.trip(graf.getNodeFromIndex(initialNode),mnpFunInt);
+      nonVisited=graf.getNonReachable();
       break;
     }
     else{
       cout<<"That port doesn't exist, try again"<<endl;
       }
     }
+    /*
         for( int x=0;x<visit.size();x++){//se hace un contador con los nodos falsos en el vetor de visitas
           if(visit[x]==false){
             nonVisited++;
           }
-  }
+    */
+  
 
   cout<<"Case "<< casesCounter+1<<":  "<<nonVisited<<" ports not reachable from port "<< initialNode <<" with MNP = "<<mnpFunInt<<"."<<endl;
   casesCounter++;
   cout<<"____________________________________________"<<endl;
   cout<<endl;
-
+  }
   //graf.insertaArcos(ports);
   //cout<<"Inserción hecha"<<endl;
-
-
-}

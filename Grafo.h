@@ -16,12 +16,14 @@ class Grafo{
     Nodo* getHead();
     Nodo* getNodeFromIndex(string);
     string getElementByIndex(int);
+    int getNonReachable();
     //funciones void
     void insertaOrden(string);
     void insertaArcos(vector<string> arcos);
     void resetGraph(vector<string> newe);
     void DFS(Nodo*,vector<bool>&);
     void dfsAdapted(Nodo*, vector<bool>&, int);
+    void trip(Nodo*,int);
     void WARSHALL();
     //funciones int
     int searchNode(string);
@@ -243,6 +245,29 @@ void Grafo::dfsAdapted(Nodo* vis, vector<bool>&visited,int MNP){
       dfsAdapted(getNodeFromIndex(vis->getBowWithIndex(g)),visited, MNP-1);
     }
   }
+}
+
+void Grafo::trip(Nodo* vis, int MNP){
+  vis->setVisited(true);
+
+  if (MNP>0){
+  for(int g=0;g<vis->getLengthStrings();g++){//se aplica un ciclo para recorrer los elementos en el vector de arcos del nodo inicial
+
+    trip(getNodeFromIndex(vis->getBowWithIndex(g)),MNP-1);
+    }
+  }
+
+}
+
+int Grafo::getNonReachable(){
+  Nodo* aux=head;
+  int counter=0;
+
+  while(aux!=NULL){
+    if (aux->getVisited()==false){counter++;}
+    aux=aux->getSig();  
+  }
+  return counter;
 }
 
 

@@ -11,6 +11,7 @@ class Nodo{
     Nodo *sig;
     vector<string> arcos;
     int conections;
+    bool visited;
   public:
     //cconstructores
     Nodo(string);
@@ -20,6 +21,7 @@ class Nodo{
     string getDato();
     vector<string> getStrings();
     int getLengthStrings();
+    bool getVisited();
     //int getMNP();
     //setters
     void setSig(Nodo*);
@@ -27,6 +29,7 @@ class Nodo{
     void addToVector(string);
     void setConections(int);
     void setArcos(vector<string>);
+    void setVisited(bool);
     string getBowWithIndex(int);
     //void setMNP(int);
 };
@@ -47,6 +50,7 @@ string Nodo::getDato(){//obtener dato del nodo
   return dato;
 }
 
+bool Nodo::getVisited(){return visited;}
 /*int Nodo::getMNP(){
   return MNP;
 }*/
@@ -79,6 +83,8 @@ void Nodo::setConections(int size){//setea el número de arcos dentro del nodo
 void Nodo::setArcos(vector<string> arc){//setea el vector arcos
   arcos=arc;
 }
+
+void Nodo::setVisited(bool visited){this->visited=visited;}
 
 string Nodo::getBowWithIndex(int index){//regresa el arco en el índice otorgado
   return arcos[index];
